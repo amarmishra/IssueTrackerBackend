@@ -1,0 +1,17 @@
+div#project-dashboard{
+    width:60vw;
+    display: inline-flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: stretch;
+    .heading{
+        h2:nth-child(1){
+        color:rgb(46, 62, 131);
+    }
+    .flash-card{
+        
+    }
+}
+div#description{
+
+}

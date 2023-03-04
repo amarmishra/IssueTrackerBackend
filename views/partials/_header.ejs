@@ -1,0 +1,49 @@
+
+
+<div>
+ 
+       
+
+        <% if(locals.user){ %>
+            <button id="add-project-btn">Add New Project</button>
+      
+            <button>Add New Issue</button>
+            <dialog id="add-project-container">
+            <%- include('./create_project_form') -%>
+            <button id="close-dialog-btn" >Cancel</button>
+            </dialog> 
+
+            <a href="/users/sign-out">Sign Out</a>
+        <% }else{ %>
+           
+        <%}%>
+        
+  
+   
+</div>
+<script>
+
+    const dialog=document.getElementById('add-project-container')
+    const openAddProjectDialog=()=>{
+       
+        if(!dialog.open){
+            dialog.showModal()
+        }
+        
+    }
+    
+    const projectBtn=document.getElementById('add-project-btn')
+    projectBtn.addEventListener('click',openAddProjectDialog)
+    
+    
+    const closeDialogBox=()=>{
+   
+        if(dialog.open){
+            dialog.close()
+        }
+    }
+    
+    const closeBtn=document.getElementById('close-dialog-btn')
+    closeBtn.addEventListener('click',closeDialogBox)
+    
+</script>

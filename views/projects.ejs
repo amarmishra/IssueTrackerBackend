@@ -1,0 +1,26 @@
+<link rel="text/stylesheet" href="/css/projects.css">
+<%if(locals.user){%>
+<p>Welcome, <%= locals.user.name %> to the dashboard</p>
+<%}%>
+
+<div id="project-dashboard">
+    <div class="heading">
+        <h2>Project Name</h2>
+        <h2>Author</h2>
+    </div>
+    <% if(projectList) { %>
+        
+        <% projectList.forEach((project)=>{ %>
+            <div class="flash-card" id= "<%= project._id %>" >
+                <h2><a href="/projects/<%= project.id %>"><%= project.name %></a> </h2>
+                <h2><%= project.author %> </h2>
+                
+            </div>
+        <% }) %>
+        
+    <% } %>
+</div>
+<div id="description" class="description">
+</div>
+
+

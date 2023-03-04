@@ -1,0 +1,35 @@
+
+<form id="create-project-form" action="/projects/create" method="post">
+    <input name='name' placeholder="Title .." required></input>
+    <input name='description' placeholder="Description .." required></input>
+    <input name='author' placeholder="Author.." required></input>
+    <button type="submit">Add Project</button>
+</form> 
+ 
+<script>
+    const handleProjectFormSubmit=(e)=>{
+    //e.preventDefault();
+    
+    // let formData=new FormData(e.target)
+    // let data={
+    //     name:formData.get('name'),
+    //     description:formData.get('description'),
+    //     author:formData.get('author')
+    // }
+    
+    // fetch('/projects/create',{
+    //     method:'post',
+    //     body:JSON.stringify(data),
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //         // 'Content-Type': 'application/x-www-form-urlencoded',
+    //     },
+    // })
+    const dialog=document.getElementById('add-project-container')
+    dialog.close()
+}
+
+const addprojectForm=document.getElementById('create-project-form')
+addprojectForm.addEventListener('submit',handleProjectFormSubmit)
+</script>
+<!-- <script type="text/javascript" src="/js/create_project_form.js"> -->
