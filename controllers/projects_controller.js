@@ -69,28 +69,32 @@ const createProject=async (req,res)=>{
         })
        
 
-        return res.status(200).json({
-            message:`Successfully added project ${newProject} to the backend`
-        })
+        // res.status(200).json({
+        //     message:`Successfully added project ${newProject} to the backend`
+        // })
+        return res.redirect(`/projects/${newProject.id}`)
     }
     catch(error){
-        console.log("Error while adding project to the list in project.js controller..line 10 with error",error)
+        console.log("Error while creating project  (project_controller.js) with error:",error)
         //depending on the error send res.status
         return res.status(500)  //Internal Error
+        
     }
     
 
     
 }
-const projectDetailPage=(req,res)=>
+const projectDetailPage=async(req,res)=>
 {
     try{
-        Project.findById(req.params.id);
-        Issue.find({projectId:req.params.id})
+        let project=await Project.findById(req.params.id).populate('issuesList');
+        
+        res.render('project_details_page',{
+            project
+        })
     }catch(err){
         console.log(`Error:${err}`);
         res.sendStatus(500).end();
-
     } 
 }
 module.exports= {createProject,sendDescription,homePage,projectDetailPage}

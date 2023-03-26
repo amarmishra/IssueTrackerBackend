@@ -1,20 +1,14 @@
 
         <script src="https://kit.fontawesome.com/ee4faef016.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" type="text/css" href="/css/home.css">
-        
-
-        <form  method="post" action="/users/login">
-            <input type="email" placeholder="...Email..." name="email">
-            <input type="password" placeholder="...Password..." name="password">
-            <input type="submit" >Login</input>
-        </form>
-        
-            <form action="/users/create-user" method="post">
-                <input type="email" placeholder="...Email..." name="email">
-                <input type="password" placeholder="...Password..." name="password">
-                <input type="text" placeholder="...Name..." name="name">
-                <input type="submit" >Login</input>
+        <div class="page-wrapper"> 
+            <p class="page-heading"><b>LOGIN</b></p>
+            <form class="sign-in-form" method="post" action="/users/login">
+                <input type="email" placeholder="Enter your email" name="email" required>
+                <input type="password" placeholder="Enter your password" name="password" required>
+                <button type="submit" >Login</button>
             </form>
-       
+            <h2>Don't have  an account?<a class="sign-up-link" href="/users/sign-up">Sign Up</a></h2>
+        </div>
        
         <!-- <script type="text/javascript" src="/js/home.js"></script> -->

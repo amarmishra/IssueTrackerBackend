@@ -1,26 +1,36 @@
-<link rel="text/stylesheet" href="/css/projects.css">
-<%if(locals.user){%>
-<p>Welcome, <%= locals.user.name %> to the dashboard</p>
-<%}%>
+<link rel="stylesheet" type="text/css" href="/css/projects.css">
+
 
 <div id="project-dashboard">
-    <div class="heading">
-        <h2>Project Name</h2>
-        <h2>Author</h2>
+    <div class="dashboard-heading">
+        <h5>Project DASHBOARD</h5>
+        <%if(locals.user){%>
+        <button id="add-project-btn">Add New Project</button>
+            
+        <dialog id="add-project-container">
+        <%- include('./partials/create_project_form') -%>
+        <button id="close-dialog-btn" >Cancel</button>
+        </dialog> 
+        <%}%>
+
     </div>
-    <% if(projectList) { %>
-        
-        <% projectList.forEach((project)=>{ %>
-            <div class="flash-card" id= "<%= project._id %>" >
-                <h2><a href="/projects/<%= project.id %>"><%= project.name %></a> </h2>
-                <h2><%= project.author %> </h2>
-                
-            </div>
-        <% }) %>
-        
-    <% } %>
-</div>
-<div id="description" class="description">
+    <div id="description" class="description">
+        <% if(projectList) { %>
+            
+            <% projectList.forEach((project)=>{ %>
+                <div class="flash-card" id= "<%= project._id %>" >
+                    <span><a href="/projects/<%= project.id %>"><%= project.name %></a> </span>
+                    <span><%= project.description %></span>
+                    <span><%= project.author %> </span>
+                    
+                </div>
+            <% }) %>
+            
+        <% } %>
+    </div>
 </div>
 
+
+
+<script type="text/javascript" src="/js/projects.js"></script>
 

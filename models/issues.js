@@ -17,7 +17,7 @@ const issueSchema= new mongoose.Schema({
     },
     project:{
         type:mongoose.Types.ObjectId,
-        reuired:true
+        ref:'Project'
     } 
     
 },{timestamps:true})

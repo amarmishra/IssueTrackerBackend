@@ -1,0 +1,77 @@
+<link rel="stylesheet" type="text/css" href="/css/project_details_page.css">
+
+    <div class="dashboard-heading">
+        <div><span><a href="/projects/<%= project.id %>">PROJECT:<%=project.name%></a></span><span><a href="/projects">AUTHOR:<%=project.author%></a></span></div>
+        <div>
+            <form id="filter-issue-form" action="/issues/filter/<%= project.id %>" method="post">
+            <input class="filter-input" name="author" placeholder="Filter by author" />
+            <input class="filter-input" name="title" placeholder="Filter by Title" />
+            <input class="filter-input" name="tags" placeholder="Filter by Tags" />
+        </form>
+        </div>
+        <div></span><button > Add New Issue</button><a href="/issues/clearFilter/<%=project.id%>"><button style="color:#e91e63;margin: 6px;">Clear Filters</button></a></div>
+    </div>
+
+    <dialog id="add-issue-container">
+
+        <form id="create-issue-form" action="/issues/create/<%= project.id %>" method="post">
+            <input name='title' placeholder="Title .." required></input>
+            <input name='description' placeholder="Description .." required></input>
+            <input name='labels' placeholder="Labels.." ></input>
+            <input name='author' placeholder="Author.." ></input>
+            <button type="submit">Add Issue</button>
+        </form> 
+         
+        <button id="close-dialog-btn" >Cancel</button>
+    </dialog> 
+
+    <div class="issues-dashboard">
+    <% if(locals.project.issuesList){%> 
+        <% project.issuesList.map((issue)=>{ %>
+            <div class="issue-container">
+                
+                <div class="heading">
+                <span>Title : &nbsp;<%=issue.title%></span>
+                
+                <span>Author : &nbsp;<%=issue.author %></span>
+                </div>
+
+                <div class="description">
+                    <h4>Description</h4>
+                    <p><%=issue.description %></p>
+                </div>
+
+                <div class="tags">
+
+                    <div class="crud-btn-container">
+                        <button class="crud-issue-button" data-id=<%= issue.id %>>...</button>
+                        <div id="<%= issue.id %>" class="drop-down-list" style="display:none;" >
+                            <ul id='drop-down-list' style="list-style:none;">
+                                <li><button data-id='delete'>DELETE</button></li>
+                                <li data-id='edit'>EDIT</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <% if(issue.labels){%>
+                        <div class="label-list">
+                            <% issue.labels.map((label)=>{%> 
+                    
+                            <button><%= label %></button>
+                        <%})%>
+                        </div>
+                    <%}%>
+                </div>
+            </div>
+        <% }) %>
+    <%}else{%>
+        <div class="issue-container"> 
+             <span>NO ISSUES/BUGS FOR THIS PROJECT. PLEASE CREATE ONE</span>
+        </div>
+    <%}%>
+    </div>
+
+
+
+    <script type="text/javascript" src="/js/project_details_page.js"></script>
+    

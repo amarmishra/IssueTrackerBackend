@@ -1,0 +1,60 @@
+.page-wrapper{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 30em;
+    min-width: 20em;
+    height: 78vh;
+    margin: auto;
+
+}
+.page-heading{
+    font-size: x-large;
+    background: #252b36;
+    color: white;
+    padding: 5px;
+    width: -webkit-fill-available;
+    text-align: center;
+}
+.sign-in-form{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 70%;
+    background: linear-gradient(93deg, #2d7662, #642857);
+    width: -webkit-fill-available;
+}
+.sign-in-form input{
+    
+    font-weight: 400;
+    font-size: 1.5em;
+    text-align: center;
+    border: none;
+    border-radius: 0.2em;
+  
+}
+.sign-in-form input:focus{
+    border: inherit;
+}
+
+.sign-in-form button{
+    color: #317847;
+    background: white;
+    font-size: x-large;
+    box-shadow: 0 0 2px 2px #143214;
+    border: none;
+    font-weight: 600;
+    width: 50%;
+    border-radius  : 0.2em;
+}
+
+.sign-up-link{
+    text-decoration: none;
+    color: white;
+    background: #125e23;
+    border-radius: 0.5em;
+    padding: 5px;
+    margin: 0px 8px;
+}

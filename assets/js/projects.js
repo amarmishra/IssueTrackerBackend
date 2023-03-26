@@ -26,3 +26,26 @@
 //     //     }
 //     // })
 // }
+
+const dialog=document.getElementById('add-project-container')
+    const openAddProjectDialog=()=>{
+       
+        if(!dialog.open){
+            dialog.showModal()
+        }
+        
+    }
+    
+    const projectBtn=document.getElementById('add-project-btn')
+    projectBtn.addEventListener('click',openAddProjectDialog)
+    
+    
+    const closeDialogBox=()=>{
+   
+        if(dialog.open){
+            dialog.close()
+        }
+    }
+    
+    const closeBtn=document.getElementById('close-dialog-btn')
+    closeBtn.addEventListener('click',closeDialogBox)

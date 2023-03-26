@@ -24,7 +24,7 @@ app.set('views','./views')
 
 
 // Setting middlewares
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: true}));
 
 
 

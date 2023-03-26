@@ -1,0 +1,112 @@
+
+#project-dashboard{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin: 10px 20px;
+}
+#project-dashboard .dashboard-heading{
+    display: flex;
+    justify-content: space-around;
+    background: #100d0dc7;
+    color: #e3f172;
+    width: -webkit-fill-available;
+    padding: 10px;
+    box-shadow: 0 0 0px 4px #4b4e32;
+    margin: 12px;
+}
+#project-dashboard .dashboard-heading button{
+    color: #ffffff;
+    background: #242020ad;
+    font-size: 1.2em;
+    margin: 0 17px;
+    border: none;
+    padding: 0 10px;
+    cursor: pointer;
+    border-radius: 0.1em;
+    box-shadow: 0 0 1px 1px #e8eb60;
+}
+
+#project-dashboard .description{
+    /* width: -webkit-fill-available; */
+    flex: auto;
+    margin: auto 5px;
+    padding: 5px;
+}
+#project-dashboard .flash-card{
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.3em;
+    font-weight: 100;
+    margin: 15px auto;
+    /* width: 96%; */
+    padding: 6px;
+    box-shadow: 0 0 2px 1.5px #300c0c;
+    background: #100d0df0;
+}
+#project-dashboard .flash-card span:nth-child(2){
+    margin: auto 6px;
+    color: #ebeac8;
+    background: #478769ab;
+    padding: 15px;
+    flex: auto;
+    border: silver 0.5px solid;
+}
+
+#project-dashboard .flash-card span:nth-child(1){
+    background: #236a3cde;
+    padding: 11px;
+    border-radius: 0.1em;
+    border-right: 0.5px solid black;
+    /* color: #3e0520de; */
+}
+#project-dashboard .flash-card span:nth-child(3){
+    background: #0d1c36;
+    padding: 2px;
+    border-radius: 0.1em;
+    text-align: center;
+    padding: 6px;
+    color: wheat;
+    border: 0.5px wheat double;
+}
+
+
+
+
+/* project container styles */
+
+#add-project-container{
+    background: #262622f7;
+    height: 50vh;
+    border: none;
+    box-shadow: 0 0 5px 5px #497237a1;
+    width: -webkit-fill-available;
+}
+#add-project-container:modal{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+}
+#add-project-container::backdrop{
+    background: #15201ae3;
+    /* width: -webkit-fill-available; */
+    /* margin: auto; */
+}
+
+#add-project-container form{
+    display: flex;
+    flex-flow: column;
+    max-width: 20em;
+    width: 42em;
+    justify-content: space-around;
+    height: 70%;
+
+}
+#add-project-container form input{
+    font-size: large;
+    padding: 4px;
+    border-radius: 0.2em;
+}

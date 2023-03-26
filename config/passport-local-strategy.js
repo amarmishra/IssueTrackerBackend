@@ -4,7 +4,7 @@ const User=require('../models/users')
 
 
 
-
+//local authentication strategy used for login for the firest time
 passport.use(new LocalStrategy(
     {usernameField: 'email'},
       function(email, password, done) {
@@ -33,7 +33,6 @@ passport.use(new LocalStrategy(
     
   passport.setAuthenticatedUser=function (req,res,next){
     if(req.isAuthenticated()){
-        console.log("Setting req.user value:",req.user)
         res.locals.user=req.user
         return next()
     }

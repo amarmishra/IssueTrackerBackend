@@ -1,0 +1,191 @@
+#project-dashboard{
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    justify-content: space-between;
+    align-items: start;
+    margin: 10px 34px;
+}
+
+#filter-issue-form{
+    display: flex;
+    flex-flow: column;
+    justify-content: stretch;
+    align-items: center;
+}
+
+.dashboard-heading{
+    display: flex;
+    justify-content: space-around;
+    margin: 50px 5px;
+    flex-flow: row wrap;
+    padding: 8px;
+    background: #00000091;
+    border-radius: 0.2em;
+}
+.dashboard-heading span{
+    color: white;
+    background: #222d40e0;
+    font-size: 1.1em;
+    padding: 5px;
+    border-radius: 0.2em;
+    box-shadow: 0 0 2px 1px black;
+    margin: 0 10px;
+}
+.dashboard-heading span:nth-child(1){
+   
+background: #41369be0;
+}
+.dashboard-heading >div {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 5px 5px;
+
+}
+.dashboard-heading>div:nth-child(3){
+
+    justify-content: space-evenly;
+
+}
+.dashboard-heading input{
+    font-size: larger;
+    width: 100%;
+    text-align: center;
+    margin: auto 71px;
+}
+
+.dashboard-heading button{
+    color: #317847;
+    background: white;
+    font-size: x-large;
+    box-shadow: 0 0 2px 2px #143214;
+    border: none;
+    font-weight: 900;
+}
+
+
+#add-issue-container{
+    border: none;
+    width: 29em;
+    background: #233f52;
+    height: 55vh;
+}
+#add-issue-container::backdrop{
+    background: #2d3a3161;
+}
+#create-issue-form{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 58%;
+}
+#create-issue-form input{
+    font-size: large;
+    margin :3px 0;
+}
+#create-issue-form button{
+    color: white;
+    background: #a256bb;
+    font-size: x-large;
+    border: none;
+    font-weight: 600;
+}
+.issue-container{
+    box-shadow: 0 0 5px -2.5px;
+    padding: 5px 12px;
+    margin: 13px 15px;
+    display: flex;
+    background: #100d0dc7;
+    color: #f1f0e3;
+    border: #99bf99e0 8px solid;
+    font-size: large;
+    font-weight: 100;
+}
+.issue-container .heading{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    border-right:1px #e9e9e933 solid;
+    align-items: center;
+    min-width: 25%;
+    padding: 15px;
+}
+.issue-container .description{
+    display: flex;
+    flex-flow: column;
+    margin: 5px 12px;
+    width: 35%;
+    border-right: 1px #e9e9e933 solid;
+    color: white;
+    padding: 6px;
+}
+.issue-container .description h4{
+    text-decoration: underline;
+    text-align: center;
+    margin: 5px;
+}
+.issue-container .description p{
+    /* White-Space: nowrap; */
+    /* Overflow: hidden; */
+    /* Text-overflow: ellipsis; */
+    /* padding: 15px; */
+}
+.issue-container .tags{
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    /* min-width: 36%; */
+    /* height: 100%; */
+    padding: 5px;
+    /* flex: auto; */
+}
+
+
+.label-list{
+  
+display: flex;
+  
+flex-flow: row-reverse wrap;
+  
+width: -webkit-fill-available;
+  
+justify-content: flex-start;
+  
+align-content: center;
+  
+flex-direction: row;
+  
+flex: auto;
+  
+padding: -6px;
+}
+.crud-btn-container{
+    margin-bottom: 3px;
+    margin-top: -10px;
+}
+.crud-issue-button{
+    position: relative;
+    background: none;
+    color: white;
+    font-size: larger;
+    border: none;
+}
+ .drop-down-list{
+    display: block;
+    z-index: 1;
+    position: absolute;
+    background: #0f1428;
+    padding: 5px;
+    right: 2.9em;
+}
+.label-list button{
+  
+    background-color: rgb(64, 212, 143);
+    color: black;
+    border: none;
+    font-size: 1em;
+    margin: 2px;
+}
