@@ -9,8 +9,9 @@ const issueSchema= new mongoose.Schema({
         required:true
     },
     labels:[{
-        type:String
-    }],
+        type : mongoose.Types.ObjectId,
+        ref:'Label'
+    }],   
     author:{
         type:String,
         required:true

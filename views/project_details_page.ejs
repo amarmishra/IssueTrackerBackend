@@ -1,23 +1,42 @@
 <link rel="stylesheet" type="text/css" href="/css/project_details_page.css">
-
+   
     <div class="dashboard-heading">
-        <div><span><a href="/projects/<%= project.id %>">PROJECT:<%=project.name%></a></span><span><a href="/projects">AUTHOR:<%=project.author%></a></span></div>
+        <div><span><a href="/projects/<%= project.id %>"><%=project.name%></a></span><span><a href="/projects"><%=project.author%></a></span></div>
         <div>
-            <form id="filter-issue-form" action="/issues/filter/<%= project.id %>" method="post">
-            <input class="filter-input" name="author" placeholder="Filter by author" />
-            <input class="filter-input" name="title" placeholder="Filter by Title" />
-            <input class="filter-input" name="tags" placeholder="Filter by Tags" />
-        </form>
+                <!-- add keyup key===enter key event for all filter-input boxes  -->
+                <input class="filter-input" name="author" placeholder="Filter by author" />
+                <input  class="filter-input" name="title" placeholder="Filter by Title" />
+                <div class="autocomplete-container">
+                
+                    <input id="filter-labels-input" data-projectId=<%= project.id %>  placeholder="Filter by Tags" />
+                    <!-- add autocomplete list here -->
+                    
+                    <div id="filter-autocomplete-list" hidden></div>
+                    
+                    <div id="filter-selected-labels-list"></div>
+                </div>
+                
+        
         </div>
         <div></span><button > Add New Issue</button><a href="/issues/clearFilter/<%=project.id%>"><button style="color:#e91e63;margin: 6px;">Clear Filters</button></a></div>
     </div>
 
     <dialog id="add-issue-container">
 
-        <form id="create-issue-form" action="/issues/create/<%= project.id %>" method="post">
+        <form id="create-issue-form" >
             <input name='title' placeholder="Title .." required></input>
+            <input name='projectId' placeholder="Title .." hidden value=<%= project.id %>></input>
             <input name='description' placeholder="Description .." required></input>
-            <input name='labels' placeholder="Labels.." ></input>
+            <div class="autocomplete-container">
+                
+                <input id='add-labels-input' name='labels' placeholder="Labels.." ></input>
+                <!-- add autocomplete list here -->
+                
+                <div id="autocomplete-list" hidden></div>
+                
+                <div id="selected-labels-list"></div>
+            </div>
+            
             <input name='author' placeholder="Author.." ></input>
             <button type="submit">Add Issue</button>
         </form> 
@@ -57,7 +76,7 @@
                         <div class="label-list">
                             <% issue.labels.map((label)=>{%> 
                     
-                            <button><%= label %></button>
+                            <button><%= label.name %></button>
                         <%})%>
                         </div>
                     <%}%>

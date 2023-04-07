@@ -55,11 +55,12 @@
 }
 
 #project-dashboard .flash-card span:nth-child(1){
-    background: #236a3cde;
+    background: #e54848de;
     padding: 11px;
     border-radius: 0.1em;
     border-right: 0.5px solid black;
-    /* color: #3e0520de; */
+    font-size: larger;
+    font-weight: 400;
 }
 #project-dashboard .flash-card span:nth-child(3){
     background: #0d1c36;

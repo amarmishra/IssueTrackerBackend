@@ -6,11 +6,14 @@ const router=express.Router();
 
 
 const { redirectToProjectPage}=require('../controllers/index')
+
 const {homePage}=require('../controllers/projects_controller')
 router.get('/',passport.checkAuthentication,redirectToProjectPage)
 
 router.use('/projects',require('./projects'))
 router.use('/issues',require('./issues'))
 router.use('/users',require('./users'))
+router.use('/labels',require('./labels'))
+
 
 module.exports=router;

@@ -1,22 +1,24 @@
 const Issue = require('../models/issues')
 const Project = require('../models/projects')
+const Label = require('../models/labels')
 
 
 module.exports.createIssue= async (req,res)=>{
 
-    // return res.render('home',{
-    //     title: 'IssueTracker',
-    //     task_categories:taskCategories,
-    //     task_list:taskList,
-        
+    let labels=[]; 
 
-    // })
+    if(req.body.choosenLabelArray && req.body.choosenLabelArray.length!==0){
+        req.body.choosenLabelArray.forEach((label)=>{
+            labels.push(label.id)
+        })
+    }
+
+    
+
 
     try{
-        let labels
-        if(req.body.labels){
-           labels=req.body.labels.split(" ")
-        }
+        //create new Issue doc in Issue collection
+
         let newIssue=await Issue.create({
             title: req.body.title,
             description:req.body.description,
@@ -25,67 +27,86 @@ module.exports.createIssue= async (req,res)=>{
             project:req.params.projectId
         })
 
+        if(req.body.newLabelArray && req.body.newLabelArray.length!==0){
+            req.body.newLabelArray.forEach(async (label)=>{
+                
+                //search for label in the database
+                let search=await Label.find()
+                                        .where('name')
+                                        .regex(new RegExp('^'+label, "i"))
+                                        .exec()
+
+                if(!(search && search.length!==0)){
+                    
+               
+                    let newLabel=await Label.create({
+                        name:label
+                    })
+                    newIssue.labels.push(newLabel._id)
+                    await newIssue.save()
+                }                        
+                
+            })
+        }
+
+
+
+     
+        
+
         let project=await Project.findById(req.params.projectId)
         project.issuesList.push(newIssue._id);
         await project.save()
 
-        // return res.status(200).json({
-        //     message:`Successfully added issue to the project`
-        // })
-        return res.redirect('back')
+      
+        return res.status(200)
     }
     catch(error){
-        console.log("Error while adding project to the list in project.js controller..line 10 with error",error)
+        console.log("Error while adding new label or adding issue to the project list",error)
         //depending on the error send res.status
         return res.status(500)  //Internal Error
     }
+    
 }
 
 
 module.exports.filterIssues=async (req,res)=>{
-    
-    // console.log("project id is",req.params.projectId)
+
+    let {author,title,labelIdArray}=req.body
 
     
-    let {author,title,tags}=req.body
-    // author && console.log("InputAuthor",author)
-    // title && console.log("InputTitle",title)
-    // tags && console.log("InputTags",tags)
-    
-    let project=await Project.findById(req.params.projectId).populate('issuesList');
-    console.log("Project found is",project)
-    let {issuesList}=project
-      
+   let issuesList=[];
+
+      //tag filter
+   if(labelIdArray){
+        
+       issuesList=await Issue.find().where({project:req.params.projectId,labels:{ $all:labelIdArray} })
+        .populate({
+            path:'labels',
+        }).exec();
+    }
+    else{
+        issuesList=await Issue.find().where({project:req.params.projectId})
+        .populate({
+            path:'labels',
+        }).exec();
+    }
+
+ 
     //author filter
     if(author){
-        let authFilteredList= issuesList.filter((issue)=> issue.author.toLowerCase().includes(author.toLowerCase()))
-        if(authFilteredList){
-            issuesList=authFilteredList;
-        }
+        
+        issuesList= issuesList.filter((issue)=> issue.author.toLowerCase().includes(author.toLowerCase()))
     }
-     
-    console.log("Auth filter",issuesList)
+  
+    
     //title filter 
     if(title){
-        let titleFilteredList= issuesList.filter((issue)=> issue.title.toLowerCase().includes(title.toLowerCase()) || issue.description.toLowerCase().includes(title.toLowerCase()) )
-        if(titleFilteredList){
-            issuesList=titleFilteredList;
-        }
+        
+        issuesList= issuesList.filter((issue)=> issue.title.toLowerCase().includes(title.toLowerCase()) || issue.description.toLowerCase().includes(title.toLowerCase()) )
     }
-    console.log("Title filter",issuesList)
-    //tags filter
-    // if(tags){
-    //     let authFilteredList= issuesList.filter((issue)=> issue.author===author)
-    //     if(authFilteredList){
-    //         issuesList=authFilteredList;
-    //     }
-    // }
-    console.log("Tags filter",issuesList)
-    project.issuesList=issuesList;
     
-    return res.render('project_details_page',{
-        project
-    }) 
+    return res.status(200).json({success:true,data:issuesList})
    
 }
 

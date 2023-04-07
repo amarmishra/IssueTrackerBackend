@@ -36,13 +36,24 @@
    
 background: #41369be0;
 }
+.dashboard-heading span a{
+    display: flex;
+    width: 138px;
+    height: 67px;
+    justify-content: space-around;
+    align-items: center;
+    font-size: larger;
+    font-weight: 400;
+}
 .dashboard-heading >div {
     display: flex;
+    flex-flow: column;
     align-items: center;
     justify-content: space-evenly;
     margin: 5px 5px;
-
 }
+
+
 .dashboard-heading>div:nth-child(3){
 
     justify-content: space-evenly;
@@ -52,9 +63,10 @@ background: #41369be0;
     font-size: larger;
     width: 100%;
     text-align: center;
-    margin: auto 71px;
 }
-
+.dashboard-heading input:focus-visible{
+    border: 3px #67cfa9 solid;
+}
 .dashboard-heading button{
     color: #317847;
     background: white;
@@ -67,30 +79,46 @@ background: #41369be0;
 
 #add-issue-container{
     border: none;
-    width: 29em;
-    background: #233f52;
-    height: 55vh;
+    width: 35em;
+    background: #262622f7;
+    height: 80vh;
+    padding: 0 15px;
+    box-shadow: 0 0 2px 2px #e5dd73c2;
 }
 #add-issue-container::backdrop{
     background: #2d3a3161;
 }
+#add-issue-container button#close-dialog-btn{
+    width: fit-content;
+    color: yellow;
+    background: transparent;
+    border: none;
+    font-size: large;
+    padding: 7px;
+    box-shadow: 0 0 1px 1px yellow;
+    margin: 0 auto;
+}
 #create-issue-form{
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 58%;
+    height: 82%;
 }
 #create-issue-form input{
     font-size: large;
     margin :3px 0;
+    position: relative;
+}
+#create-issue-form input:focus{
+    box-shadow: 0 0 6px 2px #f9f93b85;
 }
 #create-issue-form button{
-    color: white;
-    background: #a256bb;
+    color: #f4f73d;
+    background: transparent;
     font-size: x-large;
     border: none;
     font-weight: 600;
+    box-shadow: 0 0 1px 1px;
 }
 .issue-container{
     box-shadow: 0 0 5px -2.5px;
@@ -188,4 +216,106 @@ padding: -6px;
     border: none;
     font-size: 1em;
     margin: 2px;
+}
+
+
+/*autocomplete styles */
+
+.autocomplete-container{
+    height: fit-content;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    position: relative;
+    /* margin: auto 0; */
+}
+
+.autocomplete-container #autocomplete-list{
+    background: #2c2c28;
+    padding: 5px;
+    border-radius: 0.2em;
+    z-index: 1;
+    color: white;
+    box-shadow: 0 0 2px 1px;
+    position: absolute;
+    top: 100%;
+}
+.autocomplete-container #autocomplete-list .autocomplete-element{
+    
+    padding: 2px;
+    
+}
+.autocomplete-container #autocomplete-list .autocomplete-element:hover{
+    background: #7e7a43b8;
+    cursor: pointer;
+    border: 1px solid #e6ebce8f;
+}
+
+#selected-labels-list{
+    display: flex;
+    flex-flow: row wrap;
+    flex: auto;
+    justify-content: flex-start;
+    /* top: 45px; */
+    position: static;
+    /* margin-bottom: 10px; */
+}
+#selected-labels-list button{
+    border: none;
+    border-radius: 0.1em;
+    margin-left: 5px;
+    background: transparent;
+}
+#selected-labels-list div{
+    background: #090c0c;
+    color: #eeffab;
+    border-radius: 0.2em;
+    padding-left: 4px;
+    margin-left: 5px;
+}
+
+/* filter auto complete */
+
+.autocomplete-container #filter-autocomplete-list{
+    background: #2c2c28;
+    padding: 5px;
+    border-radius: 0.2em;
+    z-index: 1;
+    color: white;
+    box-shadow: 0 0 2px 1px;
+    position: absolute;
+    top: 100%;
+}
+.autocomplete-container #filter-autocomplete-list .autocomplete-element{
+    
+    padding: 2px;
+    
+}
+.autocomplete-container #filter-autocomplete-list .autocomplete-element:hover{
+    background: #7e7a43b8;
+    cursor: pointer;
+    border: 1px solid #e6ebce8f;
+}
+
+#filter-selected-labels-list{
+    display: flex;
+    flex-flow: row wrap;
+    flex: auto;
+    justify-content: flex-start;
+    /* top: 45px; */
+    position: static;
+    /* margin-bottom: 10px; */
+}
+#filter-selected-labels-list button{
+    border: none;
+    border-radius: 0.1em;
+    margin-left: 5px;
+    background: transparent;
+}
+#filter-selected-labels-list div{
+    background: #090c0c;
+    color: #eeffab;
+    border-radius: 0.2em;
+    padding-left: 4px;
+    margin-left: 5px;
 }

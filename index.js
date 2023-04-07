@@ -12,6 +12,8 @@ const db=require('./config/mongoose')
 
 app.use(express.static('./assets'))
 
+
+
 const expressLayout=require('express-ejs-layouts');
 app.use(expressLayout)
 
@@ -25,6 +27,7 @@ app.set('views','./views')
 
 // Setting middlewares
 app.use(express.urlencoded({extended: true}));
+app.use(express.json({limit:'1mb'}))
 
 
 
@@ -50,6 +53,21 @@ app.use(passport.session())
 
 
 app.use(passport.setAuthenticatedUser)
+
+//middleware to add trie data structure to req.session(to make it persistent over routes)
+app.use((req,res,next)=>{
+    if(req.session.trie){
+      return next()
+    }
+    req.session['trie']=require('./config/trie')
+    return next()
+})
+
+//middleware that cleans 
+const {cleanLabelDataFromSession}=require('./middlewares/labels')
+app.use(cleanLabelDataFromSession)
+
+
 
 app.use('/',require('./routes'))
 

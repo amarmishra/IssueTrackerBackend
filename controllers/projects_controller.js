@@ -87,7 +87,11 @@ const createProject=async (req,res)=>{
 const projectDetailPage=async(req,res)=>
 {
     try{
-        let project=await Project.findById(req.params.id).populate('issuesList');
+        let project=await Project.findById(req.params.id)
+            .populate({
+            path: 'issuesList',
+            populate: 'labels'   
+            }).exec();
         
         res.render('project_details_page',{
             project

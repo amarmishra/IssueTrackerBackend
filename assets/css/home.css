@@ -16,6 +16,7 @@
     padding: 5px;
     width: -webkit-fill-available;
     text-align: center;
+    border-radius: 0.2em;
 }
 .sign-in-form{
     display: flex;
@@ -25,14 +26,16 @@
     height: 70%;
     background: linear-gradient(93deg, #2d7662, #642857);
     width: -webkit-fill-available;
+    border-radius: 0.2em;
 }
 .sign-in-form input{
     
     font-weight: 400;
-    font-size: 1.5em;
+    font-size: larger;
     text-align: center;
     border: none;
     border-radius: 0.2em;
+}
   
 }
 .sign-in-form input:focus{

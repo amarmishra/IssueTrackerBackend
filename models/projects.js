@@ -14,6 +14,7 @@ const projectSchema= new mongoose.Schema({
     },
     issuesList:[{type : mongoose.Types.ObjectId,ref:'Issue'}],
     
+    
 },{timestamps:true})
 
 const Project=mongoose.model('Project',projectSchema)

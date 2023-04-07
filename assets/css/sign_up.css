@@ -16,6 +16,7 @@
     padding: 5px;
     width: -webkit-fill-available;
     text-align: center;
+    border-radius: 0.2em;
 }
 
 .sign-up-form{
@@ -26,6 +27,7 @@
     height: 70%;
     background: linear-gradient(93deg, #2d7662, #642857);
     width: -webkit-fill-available;
+    border-radius: 0.2em;
 
 }
 .sign-up-form input{
