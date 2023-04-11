@@ -55,10 +55,7 @@ const sendDescription=async (req,res)=>{
 
 const createProject=async (req,res)=>{
 
-    // if(req.xhr){
-        console.log('Request to create new project with values',req.body)
-        
-    // }
+  
     try{
         let newProject=
         await Project.create({

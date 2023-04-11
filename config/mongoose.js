@@ -1,7 +1,7 @@
-
+require('dotenv').config()
 const { default: mongoose } = require("mongoose");
 
-mongoose.connect('mongodb://127.0.0.1:27017/issue_tracker_backend_db')
+mongoose.connect(process.env.MONGODB_SERVER_URL)
 
 const db=mongoose.connection;
 

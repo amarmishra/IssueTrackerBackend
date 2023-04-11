@@ -59,12 +59,12 @@ module.exports.createIssue= async (req,res)=>{
         await project.save()
 
       
-        return res.status(200)
+        return res.status(200).json({success:true})
     }
     catch(error){
         console.log("Error while adding new label or adding issue to the project list",error)
         //depending on the error send res.status
-        return res.status(500)  //Internal Error
+        return res.status(200).json({success:false})  //Internal Error
     }
     
 }

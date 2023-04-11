@@ -1,9 +1,15 @@
+const dialog=document.getElementById('add-issue-container')
+const openDialogButton=document.querySelector('.dashboard-heading button')
+openDialogButton.addEventListener('click',()=>dialog.showModal())
+const addIssueForm=document.getElementById('create-issue-form')
+
+
+
 const handleIssueFormSubmit=async (e)=>{
     
-    e.preventDefault();
-    
-    let formData=new FormData(e.target)
-
+    e.preventDefault()
+    let formData=new FormData(addIssueForm)
+   
     let data={
         title:formData.get('title'),
         description:formData.get('description'),
@@ -14,32 +20,39 @@ const handleIssueFormSubmit=async (e)=>{
 
     //if following fields are not empty throw flash notification
     if(!data.title || !data.description || !data.author){
-        console.log(data)
+        console.log("Field is blank")
         return
     }
 
 
- 
+    try{
+        let response=await fetch(`/issues/create/${formData.get('projectId')}`,{
+            method:'post',
+            body:JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json",
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+        })
+        let {success}=await response.json()
+       
+       if(success){
+            if(dialog.open){dialog.close()}
+            location.reload(); 
+       }
+        
+        return 
+    }
+    catch(Err){
+        console.log(Err); return
+    }
     
-    await fetch(`/issues/create/${formData.get('projectId')}`,{
-        method:'post',
-        body:JSON.stringify(data),
-        headers: {
-            "Content-Type": "application/json",
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-    })
-    const dialog=document.getElementById('add-issue-container')
-    dialog.close()
-    location.reload();
-    return 
+   
+    
 }
 
 
-const dialog=document.getElementById('add-issue-container')
-const openDialogButton=document.querySelector('.dashboard-heading button')
-openDialogButton.addEventListener('click',()=>dialog.showModal())
-const addIssueForm=document.getElementById('create-issue-form')
+
 addIssueForm.addEventListener('submit',handleIssueFormSubmit)
  
 const closeDialogButton=document.getElementById('close-dialog-btn')
@@ -461,13 +474,27 @@ async function  renderFilterSelectedLabelsDisplay(){
 //close autocomplete list on click anywhere outside the body
 document.addEventListener('click',(e)=>{
 
-    if(e.target.getAttribute('id')==='filter-labels-input'){
-        return
-    }
-    if(  !filterautoCompleteList.getAttribute('hidden') && e.target.getAttribute('class')!=='autocomplete-element'  ){
-        filterautoCompleteList.setAttribute('hidden','true')
-        return
-    }
+   
+
+        if(e.target.getAttribute('id')==='filter-labels-input'){
+            return
+        }
+        // if(e.target.getAttribute('id')==='create-issue-submit-btn'){
+        //     e.preventDefault()
+        //     handleIssueFormSubmit()
+        //     return
+        // }
+     
+        if(  !filterautoCompleteList.getAttribute('hidden') && e.target.getAttribute('class')!=='autocomplete-element'  ){
+            filterautoCompleteList.setAttribute('hidden','true')
+            return
+        }
+        if(  !autoCompleteList.getAttribute('hidden') && e.target.getAttribute('class')!=='autocomplete-element'  ){
+            autoCompleteList.setAttribute('hidden','true')
+            return
+        }
+   
+   console.log("Click event on doucment is triggered")
 })
 
 

@@ -1,12 +1,13 @@
+require('dotenv').config()
 const express = require("express");
-
+const PORT=process.env.EXPRESS_SERVER_PORT_NO || 80
 const passport = require("passport");
 const passportLocal=require('./config/passport-local-strategy')
 
 
 // Express server and db configuration
 const app=express()
-const port=8000
+
 
 const db=require('./config/mongoose')
 
@@ -72,9 +73,9 @@ app.use(cleanLabelDataFromSession)
 app.use('/',require('./routes'))
 
 
-app.listen(port,(err)=>{
+app.listen(PORT,(err)=>{
     if(err){
         console.log(`Error:${err}`)
     }
-    console.log(`Exxpress server running on port:${port}`)
+    console.log(`Exxpress server running on port:${PORT}`)
 })
