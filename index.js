@@ -1,6 +1,6 @@
 require('dotenv').config()
 const express = require("express");
-const PORT=process.env.EXPRESS_SERVER_PORT_NO || 80
+const PORT=process.env.EXPRESS_SERVER_PORT_NO | 8000
 const passport = require("passport");
 const passportLocal=require('./config/passport-local-strategy')
 
@@ -77,5 +77,5 @@ app.listen(PORT,(err)=>{
     if(err){
         console.log(`Error:${err}`)
     }
-    console.log(`Exxpress server running on port:${PORT}`)
+    console.log(`Express server running on port:${PORT}`)
 })
