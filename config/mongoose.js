@@ -1,5 +1,7 @@
 require('dotenv').config()
-const { default: mongoose } = require("mongoose");
+
+const mongoose=require('mongoose')
+
 
 mongoose.connect(process.env.MONGODB_SERVER_URL)
 
