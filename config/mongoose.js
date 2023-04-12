@@ -5,7 +5,7 @@ mongoose.set('strictQuery', true);
 
 let db;
 
-mongoose.connect(process.env.MONGODB_SERVER_URL).then(()=>{
+mongoose.connect(process.env.MONGODB_SERVER_URL,{dbName:process.env.MONGODB_DATABASE_NAME}).then(()=>{
 
     db=mongoose.connection;
 
@@ -17,7 +17,7 @@ mongoose.connect(process.env.MONGODB_SERVER_URL).then(()=>{
         console.log("Successfully connected to the database")
     })
 
-    module.exports=db
+
         
 }).catch((err)=>{ console.log("Error while making initial connection::",err)})
    
