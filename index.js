@@ -45,7 +45,7 @@ app.use(session({
         maxAge:(1000*60*30) //30min 
     },
     store: MongoStore.create({
-        mongoUrl: 'mongodb://127.0.0.1:27017/issue_tracker_backend_db',
+        mongoUrl: `${process.env.MONGODB_SERVER_URL}/${process.env.MONGODB_DATABASE_NAME}`,
       })
 }))
 
