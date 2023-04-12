@@ -5,7 +5,7 @@ mongoose.set('strictQuery', true);
 
 let db;
 
-mongoose.connect(process.env.MONGODB_SERVER_URL,{dbName:process.env.MONGODB_DATABASE_NAME}).then(()=>{
+mongoose.connect(process.env.MONGODB_SERVER_URL,{useNewUrlParser: true, useUnifiedTopology: true,dbName:process.env.MONGODB_DATABASE_NAME}).then(()=>{
 
     db=mongoose.connection;
 
