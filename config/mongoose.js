@@ -2,17 +2,42 @@ require('dotenv').config()
 
 const mongoose=require('mongoose')
 mongoose.set('strictQuery', true);
-console.log("Connecting to::",process.env.MONGODB_SERVER_URL)
-mongoose.connect(process.env.MONGODB_SERVER_URL)
 
-const db=mongoose.connection;
+function connectToDb(){
 
-db.on('error',()=>{
-    console.error.bind(console,'An error occured while connecting database')
-})
+        return new Promise((resolve, reject) => {
+                mongoose.connect(process.env.MONGODB_SERVER_URL).then(()=>{
+                    db=mongoose.connection;
+                    db.on('error',(err)=>{
+                        console.error.bind(console,'An error occured while connecting database')
+                    })
+                    db.once('open',()=>{
+                        console.log("Successfully connected to the database")
+                        return resolve(db)
+                    })
+                    
+                })
+                .catch(reject)
+               
+            })
 
-db.once('open',()=>{
-    console.log("Successfully connected to the database")
-})
+}
 
-module.exports=db
+
+
+async function startServer(){
+    try{
+        const db=await connectToDb()
+    }
+    catch(err){
+        console.log(err)
+    }
+    
+}
+
+try {
+    startServer()
+}
+catch(err){
+    console.log(err)
+}
